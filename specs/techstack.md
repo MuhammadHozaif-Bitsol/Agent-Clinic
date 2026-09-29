@@ -58,5 +58,5 @@ support for legacy browsers.
 - Every new dependency is justified in the spec or PR that adds it.
 
 ## Deferred
- 
+
 - **Hosting and deployment:** decided in the final roadmap phase.
