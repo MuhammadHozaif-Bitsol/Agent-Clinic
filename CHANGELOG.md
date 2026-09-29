@@ -1,4 +1,4 @@
-<!-- last-commit: 9d5d9ac -->
+<!-- last-commit: 8524e8a -->
 
 # Changelog
 
@@ -15,3 +15,4 @@
 - Added placeholder Ailments, Therapies and Sign-in pages, and a 404 page.
 - Added browser, accessibility and Lighthouse performance tests.
 - Added a change-log skill to keep this file up to date.
+- Published the repo to GitHub and added a skill for merging and opening pull requests.

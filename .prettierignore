@@ -4,3 +4,4 @@ package-lock.json
 test-results
 playwright-report
 .lighthouse
+.claude/skills/finishing-a-development-branch
