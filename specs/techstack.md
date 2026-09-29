@@ -10,9 +10,9 @@ They share types and validation schemas. Versions are the ones current as of 202
 | Language      | TypeScript 6 (strict)                     | In repo                                    |
 | UI            | React 19 + React Compiler                 | In repo                                    |
 | Build / dev   | Vite 8                                    | In repo                                    |
-| Styling       | Tailwind CSS 4 (`@tailwindcss/vite`)      | Phase 1                                    |
-| Components    | shadcn/ui (built on Radix, so accessible) | Phase 1                                    |
-| Routing       | React Router                              | Phase 1 _(default choice, open to change)_ |
+| Styling       | Tailwind CSS 4 (`@tailwindcss/vite`)      | In repo                                    |
+| Components    | shadcn/ui (built on Radix, so accessible) | In repo                                    |
+| Routing       | React Router 8                            | In repo                                    |
 | Data fetching | TanStack Query                            | Phase 3 _(default choice, open to change)_ |
 
 ## Backend
@@ -34,7 +34,9 @@ migrations, not a rewrite.
 | ------------- | ------------------------------------------------------------------------------------------------- |
 | Linting       | ESLint 10 (flat config): `typescript-eslint`, React Hooks, React Refresh, `jsx-a11y-x`, `sonarjs` |
 | Formatting    | Prettier (no semicolons, single quotes) + `eslint-config-prettier`                                |
-| Testing       | Vitest + jsdom + React Testing Library                                                            |
+| Testing       | Vitest + jsdom + React Testing Library; Playwright (Chromium, Firefox, WebKit) for E2E            |
+| Accessibility | axe (`@axe-core/playwright`) in E2E, plus `jsx-a11y-x` lint                                       |
+| Performance   | Lighthouse budget (`npm run lighthouse`)                                                          |
 | AI guardrails | Claude Code hooks: env guard, and per-turn lint and test of changed files only                    |
 
 ## Layout
@@ -58,5 +60,5 @@ support for legacy browsers.
 - Every new dependency is justified in the spec or PR that adds it.
 
 ## Deferred
- 
+
 - **Hosting and deployment:** decided in the final roadmap phase.

@@ -23,5 +23,21 @@ dist-ssr
 *.sln
 *.sw?
 
-# Claude Code per-turn hook state
+# Secrets: keep templates only
+.env
+.env.*
+!.env.example
+
+# Claude Code: per-turn hook state and personal settings
 .claude/.turn-state/
+.claude/settings.local.json
+
+# Test and audit output
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.lighthouse/
+
+# OS files
+Thumbs.db
