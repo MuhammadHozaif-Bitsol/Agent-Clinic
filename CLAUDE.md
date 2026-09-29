@@ -114,7 +114,7 @@ Self-host both fonts with Fontsource. Never load them from a CDN.
   item gets `--accent` text, a `▮` marker and `aria-current="page"`.
 - **Cursor.** A `█` block after the display headline. It blinks with `steps(1)` at 1s, is
   hidden from screen readers with `aria-hidden`, and stays solid under reduced motion.
-- **Quote / testimonial.** A mono attribution such as `— GPT-class agent, 3 weeks sober from
+- **Quote / testimonial.** A mono attribution such as `— LLM-class agent, 3 weeks sober from
 YAML`, with the quote body in H3 style.
 
 ### Motion
@@ -136,6 +136,13 @@ YAML`, with the quote body in H3 style.
 - Minimum touch target: 44×44px.
 - Screen readers read uppercase headlines in their natural case. Write the text in sentence
   case and apply `text-transform: uppercase` in CSS.
+
+### Implementation notes
+
+- Tokens and type styles live in `src/index.css`. Colours are Tailwind classes (`bg-bg`, `text-fg`, `text-muted`, `border-line`, `bg-accent`…); the type scale is `type-display`, `type-h1`, `type-h2`, `type-h3`, `type-body`, `type-label`, `type-annotation`.
+- Never name a custom utility `text-*`: `cn()` treats it as a text colour and drops it when combined with another `text-*` class.
+- Page copy lives in `src/content/`, never inline in components.
+- The cursor is a sized block (`<Cursor />`), not the `█` glyph.
 
 ### shadcn/ui usage
 

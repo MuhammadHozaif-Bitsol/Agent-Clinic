@@ -144,3 +144,23 @@ lighthouserc.json
 | Tailwind 4 or shadcn conflicts with ESLint 10 or Vite 8 | Check peer ranges before installing (same process as `jsx-a11y-x`)                   |
 | An acid accent overused until it means nothing          | Design review against rule 3 of the design system ("one accent, used sparingly")     |
 | SPA 404s return HTTP 200 once hosted                    | Recorded for Phase 7 hosting config                                                  |
+
+---
+
+## As built (differences from this plan)
+
+Recorded at the end of Phase 1 so later phases start from what actually exists.
+
+| Planned                                                         | Built                                                                                                             | Why                                                                                                                         |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `@lhci/cli` for Lighthouse                                      | `lighthouse` + `chrome-launcher`, run by `scripts/lighthouse.mjs` (`npm run lighthouse`)                          | `@lhci/cli` pulled in 10 known-vulnerable transitive packages; the plain packages have none and are actively maintained     |
+| Hand-written `ui/Button.tsx`                                    | The shadcn `button.tsx`, restyled to the design system                                                            | Keeps the shadcn convention (`asChild`, variants) that later components will follow                                         |
+| `Box`, `SectionLabel`, `Annotation`, `Cursor` as separate files | `ui/primitives.tsx` (SectionLabel, Annotation, Cursor) + `layout/Section.tsx`; boxes are grid cells styled inline | Too small to justify a file each                                                                                            |
+| `PlaceholderPage` and `NotFoundPage` separate                   | Both render a shared `StatusPage` frame                                                                           | Same layout; one place to keep it consistent                                                                                |
+| Typography utilities named `text-*`                             | Named `type-display`, `type-h1` … `type-label`, `type-annotation`                                                 | `cn()` treats `text-*` classes as colours and silently dropped the type styles when combined with `text-fg` / `text-accent` |
+| Cursor as the `█` glyph                                         | A sized `span` (0.42em × 0.72em)                                                                                  | The glyph rendered taller than cap height and fell below the baseline                                                       |
+| Font preloading                                                 | Not needed                                                                                                        | Metric-matched fallbacks gave CLS 0 and LCP ≈ 1.9s without it                                                               |
+
+**shadcn init added** `radix-ui`, `class-variance-authority`, `cn` (shadcn's own compiled `clsx` + `tailwind-merge`; repo `shadcn-ui/cn`), `tw-animate-css` and `@phosphor-icons/react` (the Lyra preset's icon set, not used yet). The `shadcn` CLI is a dev dependency.
+
+**Extra npm scripts:** `test:e2e:no-webkit` (see the WebKit note in `validation.md`) and `screenshots` (review images for M1/M6).

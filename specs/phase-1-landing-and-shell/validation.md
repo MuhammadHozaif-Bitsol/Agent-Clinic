@@ -13,7 +13,7 @@ requirements it proves.
 | `npm run build`        | Types check and a production build succeeds (NFR-8)                         |
 | `npm run test:e2e`     | Playwright in Chromium, Firefox and WebKit (AC-8)                           |
 | `npm run test:a11y`    | axe with zero violations (AC-6)                                             |
-| `npm run lhci`         | Lighthouse budget (AC-7)                                                    |
+| `npm run lighthouse`   | Lighthouse budget (AC-7)                                                    |
 
 ## 2. Unit and component tests (Vitest + Testing Library)
 
@@ -84,9 +84,30 @@ Take the median of 3 runs on `/`. (AC-7, NFR-5)
 
 ## 7. Definition of done
 
-- [ ] Every automated gate in §1 passes
-- [ ] U1–U16 and E1–E9 are implemented and passing
-- [ ] Zero axe violations (§4)
-- [ ] Lighthouse budget met (§5)
+- [x] Every automated gate in §1 passes (WebKit pending CI, see §8)
+- [x] U1–U16 and E1–E9 are implemented and passing
+- [x] Zero axe violations (§4)
+- [x] Lighthouse budget met (§5)
 - [ ] M1–M6 completed and recorded in the PR description
 - [ ] `specs/roadmap.md` Phase 1 marked complete
+
+---
+
+## 8. Results (2026-09-29, branch `feature/phase-1-landing-and-shell`)
+
+| Check                                   | Result                                                                                                                                                                                     |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `npm run lint`                          | Pass: 0 errors, 0 warnings                                                                                                                                                                 |
+| `npm run format:check`                  | Pass                                                                                                                                                                                       |
+| `npm test`                              | Pass: 28 tests (U1–U16, some parameterised per route)                                                                                                                                      |
+| `npm run build`                         | Pass                                                                                                                                                                                       |
+| E2E, Chromium + Firefox + mobile Chrome | Pass: 49 tests (E1–E9 + axe)                                                                                                                                                               |
+| E2E, WebKit + mobile Safari             | **Not run locally:** see note below                                                                                                                                                        |
+| axe (§4)                                | Pass: 0 violations on all 5 routes, desktop and mobile, menu open                                                                                                                          |
+| Lighthouse (§5), median of 3            | Performance 98 · Accessibility 100 · Best Practices 100 · LCP 1.85s · CLS 0 · TBT 56ms                                                                                                     |
+| M1 design review                        | Done against `CLAUDE.md`. Fixed: mono labels being dropped by `cn()`, oversized cursor, nav wrapping at 768px, cramped 3-column sections at tablet width, broken side rules on short pages |
+| M2–M6                                   | **Pending:** need a human (screen readers, real devices, copy review, Steve's sign-off)                                                                                                    |
+
+Screenshots for M6: `screenshots/` (home, ailments, 404 at 375 / 768 / 1440, plus the open mobile menu). Regenerate with `npm run screenshots`.
+
+**WebKit note:** on the development machine, Windows Application Control policy blocks Playwright's WebKit DLLs ("An Application Control policy has blocked this file"), so the `webkit` and `mobile-safari` projects cannot launch there. They stay in `playwright.config.ts` and must pass in CI or on a machine without that policy before merge. Safari is also covered by manual check M4.

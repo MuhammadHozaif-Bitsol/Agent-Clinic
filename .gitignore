@@ -25,3 +25,8 @@ dist-ssr
 
 # Claude Code per-turn hook state
 .claude/.turn-state/
+
+# Test and audit output
+test-results/
+playwright-report/
+.lighthouse/

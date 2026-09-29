@@ -61,7 +61,8 @@ phase plugs into.
   the accent colour and a `▮` marker.
 - **FR-4:** Below the `md` breakpoint, the navigation collapses behind a menu button. The
   button has `aria-expanded` and `aria-controls`, and the menu closes when you press `Esc`
-  or choose an item. Focus returns to the button when the menu closes.
+  or choose an item. `Esc` returns focus to the button; choosing an item navigates, and
+  focus moves to the new page's `h1` (FR-8).
 - **FR-5:** The footer shows the wordmark, the navigation links, and a satirical legal line
   (e.g. `// no humans were harmed. several were gently ignored.`).
 - **FR-6:** "Skip to content" is the first focusable element and moves focus to `main`.
@@ -92,7 +93,7 @@ phase plugs into.
 - **FR-14 How it works:** `[03]` label, an H2, and exactly three numbered steps:
   "Describe your ailment" → "Pick a therapy" → "Book an appointment".
 - **FR-15 Testimonials:** `[04]` label, an H2, and 3 quotes from relieved agents, each with
-  a mono attribution (e.g. `— GPT-class agent, 3 weeks sober from YAML`). Quotes use
+  a mono attribution (e.g. `— LLM-class agent, 3 weeks sober from YAML`). Quotes use
   `<figure>`, `<blockquote>` and `<figcaption>`.
 - **FR-16:** Landing page copy (headlines, ailments, steps, quotes) lives in one typed
   content module, not scattered through components. This makes it easy to edit and lets

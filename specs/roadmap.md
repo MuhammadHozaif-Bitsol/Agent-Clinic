@@ -6,7 +6,9 @@ spec before work starts.
 
 ## Phase 1: Landing page and layout shell
 
-- Set up Tailwind CSS and shadcn/ui, with design tokens and light/dark mode
+**Status:** Built on `feature/phase-1-landing-and-shell`; awaiting WebKit CI run and human review (M2–M6). Spec: `specs/phase-1-landing-and-shell/`.
+
+- Set up Tailwind CSS and shadcn/ui, with design tokens (dark only; see `CLAUDE.md`)
 - App layout: header, navigation, footer; responsive from phone to desktop
 - Routing with placeholder pages: Home, Ailments, Therapies, Sign in
 - Marketing landing page in the clinic's satirical voice
